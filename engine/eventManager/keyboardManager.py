@@ -10,9 +10,9 @@ def getProcess(keys):
         return process.getProcess('sys', 'exit', None)
     if movementKeyPressed(keys):
         params = {}
-        params['object'] = objectManager.objects['player']
+        params['object'] = objectManager.objectSet['player'][0]
         params['vector'] = [keys[pygame.K_d]-keys[pygame.K_a], keys[pygame.K_s]-keys[pygame.K_w]]
-        return process.getProcess('physics', 'movement', params)
+        return process.getProcess('physics', 'move', params)
     else:
         return process.getProcess(None, None, None)
 

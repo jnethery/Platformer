@@ -36,10 +36,10 @@ def runSystemProcess(method, params):
         pass
 
 def runPhysicsProcess(method, params):
-    if method is 'movement':
+    if method is 'move':
         object = params['object']
         vector = params['vector']
-        physicsManager.getMovement(object, vector)
+        physicsManager.move(object, vector)
 
 def runGraphicsProcess(method, params):
     if method is 'fill':
@@ -47,6 +47,6 @@ def runGraphicsProcess(method, params):
     if method is 'flip':
         graphicsManager.flipScreen()
     if method is 'blit':
-        graphicsManager.blit(objectManager.objects['player'])
+        graphicsManager.blit(params['object'])
     else:
         pass
