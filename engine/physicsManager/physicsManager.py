@@ -24,6 +24,7 @@ def processCollisions():
     for i in range(0, len(objects), 1):
         for j in range(i+1, len(objects), 1):
             processCollision(objects[i], objects[j])
+            processCollision(objects[j], objects[i])
 
 def processCollision(object, collisionSurface):
     if type(object) is not objects.PhysicsObject and type(collisionSurface) is not objects.PhysicsObject:

@@ -15,6 +15,7 @@ objectSet = {
     'enemies':[
         #objects.PhysicsObject(100,0,10,10),
         #objects.PhysicsObject(200,0,10,10),
+        #objects.PhysicsObject(45,-100,10,10),
     ],
 }
 
