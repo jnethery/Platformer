@@ -36,29 +36,67 @@ def processCollision(object, collisionSurface):
         origin = object.getPosition()
         destination = map(operator.add, origin, object.getVelocityDisplacementVector())
         testVector = [destination[0] - origin[0], destination[1] - origin[1]]
-        offset = [0,0]
 
+        # test collisions on bottom
         if testVector[1] > 0:
             origin = [object.getRect().left, object.getRect().bottom]
-            offset[0] = object.getRect().w
-        testVector = pygame.Rect(origin[0], origin[1],
-                                 destination[0] - origin[0] + offset[0], destination[1] - origin[1] + offset[1])
-        if testVector.colliderect(collisionSurface.getRect()):
-            setPostCollisionPosition(object, collisionSurface)
+            offset = [object.getRect().w, 0]
+            if getTestVector(origin, destination, offset).colliderect(collisionSurface.getRect()):
+                setPostCollisionPosition(object, collisionSurface)
 
-def isGrounded(object):
-    objects = objectManager.getObjects()
-    if (object.getRect().collidelist(objects)):
-        pass
+        # test collisions on top
+        if testVector[1] < 0:
+            origin = [object.getRect().left, object.getRect().top]
+            offset = [object.getRect().w, 0]
+            if getTestVector(origin, destination, offset).colliderect(collisionSurface.getRect()):
+                setPostCollisionPosition(object, collisionSurface)
+
+        #test collisions on right
+        if testVector[0] > 0:
+            origin = [object.getRect().right, object.getRect().top]
+            offset = [0, object.getRect().h]
+            if getTestVector(origin, destination, offset).colliderect(collisionSurface.getRect()):
+                setPostCollisionPosition(object, collisionSurface)
+
+        #test collisions on left
+        if testVector[0] < 0:
+            origin = [object.getRect().left, object.getRect().top]
+            offset = [0, object.getRect().h]
+            if getTestVector(origin, destination, offset).colliderect(collisionSurface.getRect()):
+                setPostCollisionPosition(object, collisionSurface)
+
+def getTestVector(origin, destination, offset):
+    return pygame.Rect(origin[0], origin[1],
+                                 destination[0] - origin[0] + offset[0], destination[1] - origin[1] + offset[1])
 
 def setPostCollisionPosition(object, collisionSurface):
     if type(object) is objects.PhysicsObject:
-        if object.getRect().top <= collisionSurface.getRect().top:
-            object.getRect().bottom = collisionSurface.getRect().top
-            vel = object.getVelocity()
-            x_vel = vel[0]
-            y_vel = 0
-            object.setVelocity([x_vel, y_vel])
+
+        vel = object.getVelocity()
+        x_vel = vel[0]
+        y_vel = vel[1]
+
+        # testing top and bottom collisions
+        if object.getRect().right > collisionSurface.getRect().left and \
+                        object.getRect().left < collisionSurface.getRect().right:
+            if object.getRect().top <= collisionSurface.getRect().top:
+                object.getRect().bottom = collisionSurface.getRect().top
+                y_vel = 0
+            if object.getRect().bottom >= collisionSurface.getRect().bottom:
+                object.getRect().top = collisionSurface.getRect().bottom
+                y_vel = 0
+
+        # testing left and right collisions
+        if object.getRect().bottom > collisionSurface.getRect().top and \
+                        object.getRect().top < collisionSurface.getRect().bottom:
+            if object.getRect().left < collisionSurface.getRect().left:
+                object.getRect().right = collisionSurface.getRect().left
+                x_vel = 0
+            if object.getRect().right > collisionSurface.getRect().right:
+                object.getRect().left = collisionSurface.getRect().right
+                x_vel = 0
+
+        object.setVelocity([x_vel, y_vel])
 
 
 
