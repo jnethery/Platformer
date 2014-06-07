@@ -15,6 +15,7 @@ def getGraphicsProcessQueue():
     graphicsProcessQueue = []
     graphicsProcessQueue.append(process.getProcess('gfx', 'fill', None))
     graphicsProcessQueue += blitObjects()
+    moveScreen()
     graphicsProcessQueue.append(process.getProcess('gfx', 'flip', None))
     return graphicsProcessQueue
 
@@ -45,3 +46,8 @@ def blitObjects():
         params['object'] = object
         processList.append(process.getProcess('gfx', 'blit', params))
     return processList
+
+def moveScreen():
+    objects = objectManager.getObjects()
+    for object in objects:
+        object.displace([-1, 0])

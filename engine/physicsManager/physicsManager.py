@@ -1,8 +1,6 @@
 __author__ = 'josiah'
 import pygame
 import operator
-from engine import config
-from engine.processManager import process
 from engine.objectManager import objectManager, objects
 
 def processPhysics():
