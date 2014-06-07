@@ -9,9 +9,9 @@ objectSet = {
         objects.Object(500,280,100,200),
         objects.Object(200,350,35,35),
         objects.Object(200,275,35,35),
-        objects.Object(0,0,10,512),
+        objects.Object(-1000,0,1000,512),
     ],
-    'player':[objects.PhysicsObject(40,0,20,20)],
+    'player':[objects.PhysicsObject(40,360,20,20)],
     'enemies':[
         #objects.PhysicsObject(100,0,10,10),
         #objects.PhysicsObject(200,0,10,10),
@@ -35,3 +35,6 @@ def getPhysicsObjects():
             if type(object) is objects.PhysicsObject:
                 objectsList.append(object)
     return objectsList
+
+def getPlayer():
+    return objectSet['player'][0]
