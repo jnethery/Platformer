@@ -26,4 +26,7 @@ def createObject(object, origin, size):
         if object[1] is '1':
             objectManager.objectSet['level'].append(objects.Object(origin[0], origin[1], size[0], size[1]))
     if object[0] is '1':
-        objectManager.objectSet['player'].append(objects.PhysicsObject(origin[0], origin[1], size[0], size[1]))
+        if object[1] is '0':
+            objectManager.objectSet['player'].append(objects.PhysicsObject(origin[0], origin[1], size[0], size[1]))
+        if object[1] is '1':
+            objectManager.objectSet['enemies'].append(objects.PhysicsObject(origin[0], origin[1], size[0], size[1]))

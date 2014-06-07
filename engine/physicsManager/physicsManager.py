@@ -17,11 +17,13 @@ def jump(object):
 
 def applyPhysics():
     objects = objectManager.getPhysicsObjects()
+    objects = objectManager.cullObjects(objects)
     for object in objects:
         object.applyPhysics()
 
 def processCollisions():
     objects = objectManager.getObjects()
+    objects = objectManager.cullObjects(objects)
     for i in range(0, len(objects), 1):
         for j in range(i+1, len(objects), 1):
             processCollision(objects[i], objects[j])

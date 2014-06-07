@@ -45,6 +45,7 @@ def blit(object):
 def blitObjects():
     processList = []
     objects = objectManager.getObjects()
+    objects = objectManager.cullObjects(objects)
     for object in objects:
         params = {}
         params['object'] = object

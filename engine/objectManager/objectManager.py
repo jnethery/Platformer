@@ -1,3 +1,4 @@
+import engine.config as config
 from engine.objectManager import objects
 __author__ = 'josiah'
 
@@ -7,27 +8,21 @@ objectSet = {
     'enemies':[]
 }
 
-'''objectSet = {
-    'level':[
-        objects.Object(0,380,200,100),
-        objects.Object(200,380,100,100),
-        objects.Object(400,380,100,100),
-        objects.Object(500,280,100,200),
-        objects.Object(200,350,35,35),
-        objects.Object(200,275,35,35),
-        objects.Object(-1000,0,1000,512),
-    ],
-    'player':[objects.PhysicsObject(40,360,20,20)],
-    'enemies':[
-        #objects.PhysicsObject(100,0,10,10),
-        #objects.PhysicsObject(200,0,10,10),
-        #objects.PhysicsObject(45,-100,10,10),
-    ],
-}'''
-
 def initializeObjects():
     for object in objectSet['level']:
         object.setColor([120,120,120])
+
+screen_height = config.gfx['screen']['screen_height']
+screen_width = config.gfx['screen']['screen_width']
+
+def cullObjects(objectList):
+    culledList = []
+    for object in objectList:
+        objectRect = object.getRect()
+        if objectRect.x < screen_width and objectRect.x + objectRect.w >= 0 and \
+            objectRect.y < screen_height and objectRect.y + objectRect.h >= 0:
+                culledList.append(object)
+    return culledList
 
 def getObjects():
     objectsList = []
