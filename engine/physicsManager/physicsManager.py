@@ -103,6 +103,7 @@ def setPostCollisionPosition(object, collisionSurface):
 
 def isGrounded(object):
     levelObjects = objectManager.getLevelObjects()
+    levelObjects = objectManager.cullObjects(levelObjects)
     levelRects = [levelObject.getRect() for levelObject in levelObjects]
     testRect = object.getRect()
     testRect = testRect.move(0,1)

@@ -8,6 +8,14 @@ from engine import config
 pygame.init()
 levelManager.loadLevel('001')
 
-while (True):
-    processManager.runProcessQueue()
-    clock.clock.tick(config.physics['fps']) #the game is limited to 60 FPS
+engineState = 1
+
+#game loop
+while engineState is 0:
+    processManager.runProcessQueue(engineState)
+    clock.clock.tick(config.physics['fps'])
+
+#level editor loop
+while engineState is 1:
+    processManager.runProcessQueue(engineState)
+    clock.clock.tick(config.physics['fps'])

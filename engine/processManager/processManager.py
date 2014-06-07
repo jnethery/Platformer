@@ -5,6 +5,12 @@ from engine.graphicsManager import graphicsManager
 from engine.physicsManager import physicsManager
 from engine.objectManager import objectManager
 
+def getEditorProcessQueue():
+    processQueue = []
+    processQueue += eventManager.getEditorEventProcessQueue()
+    processQueue += graphicsManager.getGraphicsProcessQueue()
+    return processQueue
+
 def getProcessQueue():
     processQueue = []
     physicsManager.processPhysics()
@@ -12,8 +18,11 @@ def getProcessQueue():
     processQueue += graphicsManager.getGraphicsProcessQueue()
     return processQueue
 
-def runProcessQueue():
-    processQueue = getProcessQueue()
+def runProcessQueue(engineState):
+    if engineState is 0:
+        processQueue = getProcessQueue()
+    if engineState is 1:
+        processQueue = getEditorProcessQueue()
     for process in processQueue:
         system = process['system']
         method = process['method']
@@ -26,8 +35,20 @@ def runProcessQueue():
             runGraphicsProcess(method, params)
         if system is 'sound':
             pass
+        if system is 'editor':
+            runEditorProcess(method, params)
         else:
             pass
+
+def runEditorProcess(method, params):
+    if method is 'addObject':
+        object = params['object']
+        objectManager.objectSet['level'].append(object)
+    if method is 'deleteObject':
+        object = params['object']
+        type = params['type']
+        if type is not None:
+            objectManager.objectSet[type].remove(object)
 
 def runSystemProcess(method, params):
     if method is 'exit':
