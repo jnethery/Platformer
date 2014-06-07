@@ -76,9 +76,10 @@ def setPostCollisionPosition(object, collisionSurface):
         x_vel = vel[0]
         y_vel = vel[1]
 
+        collisionOffsets = [object.getRect().w/4, object.getRect().h/4]
         # testing top and bottom collisions
-        if object.getRect().right > collisionSurface.getRect().left and \
-                        object.getRect().left < collisionSurface.getRect().right:
+        if object.getRect().right - collisionOffsets[0] > collisionSurface.getRect().left and \
+                        object.getRect().left + collisionOffsets[0] < collisionSurface.getRect().right:
             if object.getRect().top <= collisionSurface.getRect().top:
                 object.getRect().bottom = collisionSurface.getRect().top
                 y_vel = 0
@@ -87,8 +88,8 @@ def setPostCollisionPosition(object, collisionSurface):
                 y_vel = 0
 
         # testing left and right collisions
-        if object.getRect().bottom > collisionSurface.getRect().top and \
-                        object.getRect().top < collisionSurface.getRect().bottom:
+        if object.getRect().bottom - collisionOffsets[1] > collisionSurface.getRect().top and \
+                        object.getRect().top + collisionOffsets[1] < collisionSurface.getRect().bottom:
             if object.getRect().left < collisionSurface.getRect().left:
                 object.getRect().right = collisionSurface.getRect().left
                 x_vel = 0
