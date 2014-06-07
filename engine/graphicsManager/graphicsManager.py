@@ -9,7 +9,7 @@ screen_height = config.gfx['screen']['screen_height']
 screen_size = [screen_width, screen_height]
 screen = pygame.display.set_mode(screen_size)
 
-screen_scroll_trigger = [200, 100]
+screen_scroll_trigger = [64*3, 64*2]
 screen_scroll_speed = [4, 4]
 
 RGB = [100, 100, 255]

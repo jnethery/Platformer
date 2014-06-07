@@ -14,7 +14,7 @@ def getKeyboardProcessQueue(keydownEvents):
         processList.append(process.getProcess('sys', 'exit', None))
     if movementKeyPressed(keys):
         params = {}
-        params['object'] = objectManager.objectSet['player'][0]
+        params['object'] = objectManager.getPlayer()
         params['vector'] = [(keys[pygame.K_d]-keys[pygame.K_a])*params['object'].run_velocity, 0]
         processList.append(process.getProcess('physics', 'applyVelocity', params))
 
@@ -22,7 +22,7 @@ def getKeyboardProcessQueue(keydownEvents):
     for event in keydownEvents:
         if event.key is pygame.K_SPACE:
             params = {}
-            params['object'] = objectManager.objectSet['player'][0]
+            params['object'] = objectManager.getPlayer()
             processList.append(process.getProcess('physics', 'jump', params))
 
     return processList

@@ -11,8 +11,9 @@ def applyVelocity(object, vector):
     object.applyVelocity(vector)
 
 def jump(object):
-    vel = object.getVelocity()
-    object.setVelocity([vel[0], -object.jump_velocity])
+    if isGrounded(object):
+        vel = object.getVelocity()
+        object.setVelocity([vel[0], -object.jump_velocity])
 
 def applyPhysics():
     objects = objectManager.getPhysicsObjects()
@@ -97,6 +98,15 @@ def setPostCollisionPosition(object, collisionSurface):
 
         object.setVelocity([x_vel, y_vel])
 
+def isGrounded(object):
+    levelObjects = objectManager.getLevelObjects()
+    levelRects = [levelObject.getRect() for levelObject in levelObjects]
+    testRect = object.getRect()
+    testRect = testRect.move(0,1)
+    collisionIndices = testRect.collidelistall(levelRects)
+    if len(collisionIndices) > 0:
+        return True
+    return False
 
 
 

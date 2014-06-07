@@ -37,7 +37,7 @@ class PhysicsObject(Object):
 
         self.velocity = [0, 0]
         self.run_velocity = 30
-        self.jump_velocity = 30
+        self.jump_velocity = 40
         self.damping = self.run_velocity/2
         self.max_velocity = [self.run_velocity, 100]
 
