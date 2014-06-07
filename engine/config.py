@@ -2,8 +2,8 @@ __author__ = 'josiah'
 
 gfx = {
     'screen':{
-        'screen_height':512,
-        'screen_width':512
+        'screen_height':480,
+        'screen_width':640
     },
     'color':{
         'black':[0,0,0],

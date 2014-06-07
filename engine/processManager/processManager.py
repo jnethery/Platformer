@@ -7,8 +7,8 @@ from engine.objectManager import objectManager
 
 def getProcessQueue():
     processQueue = []
+    physicsManager.processPhysics()
     processQueue += eventManager.getEventProcessQueue()
-    processQueue += physicsManager.getPhysicsProcessQueue()
     processQueue += graphicsManager.getGraphicsProcessQueue()
     return processQueue
 
@@ -36,10 +36,13 @@ def runSystemProcess(method, params):
         pass
 
 def runPhysicsProcess(method, params):
-    if method is 'move':
+    if method is 'applyVelocity':
         object = params['object']
         vector = params['vector']
-        physicsManager.move(object, vector)
+        physicsManager.applyVelocity(object, vector)
+    if method is 'jump':
+        object = params['object']
+        physicsManager.jump(object)
 
 def runGraphicsProcess(method, params):
     if method is 'fill':

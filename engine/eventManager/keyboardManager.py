@@ -3,18 +3,29 @@ import pygame
 from engine.processManager import process
 from engine.objectManager import objectManager
 
-movementKeys = [pygame.K_w, pygame.K_a, pygame.K_s, pygame.K_d]
+movementKeys = [pygame.K_a, pygame.K_d]
 
-def getProcess(keys):
+def getKeyboardProcessQueue(keydownEvents):
+    processList = []
+    keys = pygame.key.get_pressed()
+
+    # Handling for HELD keys
     if keys[pygame.K_q]:
-        return process.getProcess('sys', 'exit', None)
+        processList.append(process.getProcess('sys', 'exit', None))
     if movementKeyPressed(keys):
         params = {}
         params['object'] = objectManager.objectSet['player'][0]
-        params['vector'] = [keys[pygame.K_d]-keys[pygame.K_a], keys[pygame.K_s]-keys[pygame.K_w]]
-        return process.getProcess('physics', 'move', params)
-    else:
-        return process.getProcess(None, None, None)
+        params['vector'] = [(keys[pygame.K_d]-keys[pygame.K_a])*params['object'].run_velocity, 0]
+        processList.append(process.getProcess('physics', 'applyVelocity', params))
+
+    # Handling for PRESSED keys
+    for event in keydownEvents:
+        if event.key is pygame.K_SPACE:
+            params = {}
+            params['object'] = objectManager.objectSet['player'][0]
+            processList.append(process.getProcess('physics', 'jump', params))
+
+    return processList
 
 def movementKeyPressed(keys):
     for key in movementKeys:

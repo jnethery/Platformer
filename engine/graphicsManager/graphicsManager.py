@@ -8,6 +8,8 @@ screen_width = config.gfx['screen']['screen_width']
 screen_height = config.gfx['screen']['screen_height']
 screen_size = [screen_width, screen_height]
 screen = pygame.display.set_mode(screen_size)
+RGB = [100, 100, 255]
+RGB_DIR = [1,1,1]
 
 def getGraphicsProcessQueue():
     graphicsProcessQueue = []
@@ -17,7 +19,17 @@ def getGraphicsProcessQueue():
     return graphicsProcessQueue
 
 def fillScreen():
-    screen.fill([100,100,255])
+    if RGB_DIR[0] is 1:
+        if RGB[0] < 255 - 1:
+            RGB[0] += 2
+        else:
+            RGB_DIR[0] = 0
+    else:
+        if RGB[0] > 0 + 1:
+            RGB[0] -= 2
+        else:
+            RGB_DIR[0] = 1
+    screen.fill(RGB)
 
 def flipScreen():
     pygame.display.flip()

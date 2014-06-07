@@ -5,8 +5,9 @@ import keyboardManager
 def getEventProcessQueue():
     eventProcessQueue = []
     events = pygame.event.get()
-    keys = pygame.key.get_pressed()
+    keydownEvents = []
     for event in events:
-        pass
-    eventProcessQueue.append(keyboardManager.getProcess(keys))
+        if event.type is pygame.KEYDOWN:
+            keydownEvents.append(event)
+    eventProcessQueue += (keyboardManager.getKeyboardProcessQueue(keydownEvents))
     return eventProcessQueue
