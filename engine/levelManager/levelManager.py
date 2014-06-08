@@ -42,8 +42,8 @@ def saveEditorLevel():
                 objectArray[i][j] = '01'
             if objectKey is 'player':
                 objectArray[i][j] = '10'
-    levelDataRoot = os.getcwd() + '/levelManager/data/'
-    data = open(levelDataRoot + current_level, 'w')
+    os.chdir(os.path.join(os.getcwd(), 'levelManager/data/'))
+    data = open(current_level, 'w')
     for objectRow in objectArray:
         data.write(' '.join(objectRow))
         data.write('\n')
@@ -53,8 +53,8 @@ def saveEditorLevel():
 def loadLevel(level):
     global current_level
     current_level = level
-    levelDataRoot = os.getcwd() + '/levelManager/data/'
-    data = open(levelDataRoot + level, 'r')
+    os.chdir(os.path.join(os.getcwd(), 'levelManager/data/'))
+    data = open(level, 'r')
     lines = data.readlines()
     data.close()
 

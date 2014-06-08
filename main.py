@@ -8,7 +8,7 @@ from engine import config
 pygame.init()
 levelManager.loadLevel('001')
 
-engineState = 1
+engineState = 0
 
 #game loop
 while engineState is 0:
