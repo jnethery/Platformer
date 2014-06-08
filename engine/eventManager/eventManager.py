@@ -16,7 +16,6 @@ def getEventProcessQueue():
 
 def getEditorEventProcessQueue():
     eventProcessQueue = []
-    editor.showEditorCursor(pygame.mouse.get_pos())
     events = pygame.event.get()
     for event in events:
         if event.type is pygame.KEYDOWN:
@@ -25,10 +24,14 @@ def getEditorEventProcessQueue():
             if event.key is pygame.K_s and event.mod == 64:
                 print 'Saving level...'
                 eventProcessQueue.append(process.getProcess('editor', 'save', None))
-        if event.type is pygame.MOUSEBUTTONDOWN:
-            if event.button is 1:
-                eventProcessQueue.append(editor.addObject(event.pos))
-            if event.button is 3:
-                eventProcessQueue.append(editor.deleteObject(event.pos))
     eventProcessQueue += (keyboardManager.getEditorKeyboardProcessQueue())
+
+    # Mouse stuff
+    mousePosition = pygame.mouse.get_pos()
+    mousePressed = pygame.mouse.get_pressed()
+    editor.showEditorCursor(mousePosition)
+    if mousePressed[0] == 1:
+        eventProcessQueue.append(editor.addObject(mousePosition))
+    if mousePressed[2] == 1:
+        eventProcessQueue.append(editor.deleteObject(mousePosition))
     return eventProcessQueue
