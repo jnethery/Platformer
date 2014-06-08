@@ -5,6 +5,10 @@ from engine.objectManager import objectManager, objects
 
 current_level = None
 
+def setPath():
+    os.chdir(os.path.join(os.getcwd(), 'levelManager'))
+    os.chdir(os.path.join(os.getcwd(), 'data'))
+
 def getCurrentLevel():
     return current_level
 
@@ -42,7 +46,7 @@ def saveEditorLevel():
                 objectArray[i][j] = '01'
             if objectKey is 'player':
                 objectArray[i][j] = '10'
-    os.chdir(os.path.join(os.getcwd(), 'levelManager/data/'))
+    setPath()
     data = open(current_level, 'w')
     for objectRow in objectArray:
         data.write(' '.join(objectRow))
@@ -53,7 +57,7 @@ def saveEditorLevel():
 def loadLevel(level):
     global current_level
     current_level = level
-    os.chdir(os.path.join(os.getcwd(), 'levelManager/data/'))
+    setPath()
     data = open(level, 'r')
     lines = data.readlines()
     data.close()
