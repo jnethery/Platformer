@@ -9,6 +9,7 @@ class Object(object):
     def __init__(self, x, y, w, h):
         self.Rect = pygame.Rect(x, y, w, h)
         self.color = [255,255,255]
+        self.image = None
 
     def setColor(self, color):
         self.color = color
@@ -40,6 +41,9 @@ class PhysicsObject(Object):
         self.jump_velocity = 40
         self.damping = self.run_velocity/2
         self.max_velocity = [self.run_velocity, 100]
+        import os
+        print os.getcwd()
+        self.image = pygame.image.load('test.png')
 
         self.mass = 1
 

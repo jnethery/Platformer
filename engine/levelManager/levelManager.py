@@ -10,6 +10,11 @@ def setPath():
     os.chdir(os.path.join(os.getcwd(), 'levelManager'))
     os.chdir(os.path.join(os.getcwd(), 'data'))
 
+def resetPath():
+    os.chdir('..')
+    os.chdir('..')
+    os.chdir('..')
+
 def getCurrentLevel():
     return current_level
 
@@ -54,6 +59,7 @@ def saveEditorLevel():
         data.write('\n')
     data.close()
     print '...level saved'
+    resetPath()
 
 def loadLevel(level):
     global current_level
@@ -62,6 +68,7 @@ def loadLevel(level):
     data = open(level, 'r')
     lines = data.readlines()
     data.close()
+    resetPath()
 
     tile_size = config.gfx['tile']['tile_size']
     for i in range(0, len(lines), 1):

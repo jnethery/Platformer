@@ -49,7 +49,15 @@ def flipScreen():
     pygame.display.flip()
 
 def blit(object):
-    pygame.draw.rect(screen, object.getColor(), object.getRect())
+    if object.image is not None:
+        screen.blit(object.image, object.getRect())
+        font = pygame.font.Font(pygame.font.match_font('Arial'), 12)
+        text = font.render('Test', 1, (255,255,255))
+        textRect = pygame.Rect(10,10,100,100)
+        screen.blit(text, textRect)
+    else:
+        pygame.draw.rect(screen, object.getColor(), object.getRect())
+
 
 def blitObjects():
     processList = []
