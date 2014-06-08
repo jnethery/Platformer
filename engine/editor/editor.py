@@ -2,10 +2,14 @@ __author__ = 'josiah'
 import engine.config as config
 from engine.objectManager import objectManager, objects
 from engine.processManager import process
+from engine.levelManager import levelManager
 
 tile_size = config.gfx['tile']['tile_size']
 screen_width = config.gfx['screen']['screen_width']
 screen_height = config.gfx['screen']['screen_height']
+
+def saveLevel():
+    levelManager.saveEditorLevel()
 
 def addObject(mousePosition):
     params = {}

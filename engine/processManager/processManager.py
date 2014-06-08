@@ -4,6 +4,7 @@ from engine.eventManager import eventManager
 from engine.graphicsManager import graphicsManager
 from engine.physicsManager import physicsManager
 from engine.objectManager import objectManager
+from engine.editor import editor
 
 def getEditorProcessQueue():
     processQueue = []
@@ -41,6 +42,8 @@ def runProcessQueue(engineState):
             pass
 
 def runEditorProcess(method, params):
+    if method is 'save':
+        editor.saveLevel()
     if method is 'addObject':
         object = params['object']
         objectManager.objectSet['level'].append(object)

@@ -3,7 +3,55 @@ import os, sys
 import engine.config as config
 from engine.objectManager import objectManager, objects
 
+current_level = None
+
+def getCurrentLevel():
+    return current_level
+
+def saveEditorLevel():
+    tile_size = config.gfx['tile']['tile_size']
+    min_x = sys.maxint
+    min_y = sys.maxint
+    max_x = 0
+    max_y = 0
+    objects = objectManager.getObjects()
+    for object in objects:
+        objectRect = object.getRect()
+        if objectRect.x < min_x:
+            min_x = objectRect.x
+        if objectRect.x > max_x:
+            max_x = objectRect.x
+        if objectRect.y > max_y:
+            max_y = objectRect.y
+        if objectRect.y < min_y:
+            min_y = objectRect.y
+    rows = ((max_x - min_x)/tile_size + 1)
+    columns = (max_y - min_y)/tile_size + 1
+
+    objectArray = []
+    for j in range(0, columns, 1):
+        objectArray.append([])
+        for i in range(0, rows, 1):
+            objectArray[j].append('00')
+    for objectKey in objectManager.objectSet:
+        for object in objectManager.objectSet[objectKey]:
+            objectRect = object.getRect()
+            i = (objectRect.y - min_y)/tile_size
+            j = (objectRect.x - min_x)/tile_size
+            if objectKey is 'level':
+                objectArray[i][j] = '01'
+            if objectKey is 'player':
+                objectArray[i][j] = '10'
+    levelDataRoot = os.getcwd() + '/levelManager/data/'
+    data = open(levelDataRoot + current_level, 'w')
+    for objectRow in objectArray:
+        data.write(' '.join(objectRow))
+        data.write('\n')
+    data.close()
+
 def loadLevel(level):
+    global current_level
+    current_level = level
     levelDataRoot = os.getcwd() + '/levelManager/data/'
     data = open(levelDataRoot + level, 'r')
     lines = data.readlines()
