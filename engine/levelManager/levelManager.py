@@ -1,17 +1,20 @@
 __author__ = 'josiah'
 import os, sys
+import pygame
 import engine.config as config
 from engine.objectManager import objectManager, objects
 
 current_level = None
 
-def setPath():
-    os.chdir(os.path.join(os.getcwd(), 'engine'))
-    os.chdir(os.path.join(os.getcwd(), 'levelManager'))
+def setLevelDataPath():
     os.chdir(os.path.join(os.getcwd(), 'data'))
+    os.chdir(os.path.join(os.getcwd(), 'levels'))
+
+def setImageDataPath():
+    os.chdir(os.path.join(os.getcwd(), 'data'))
+    os.chdir(os.path.join(os.getcwd(), 'img'))
 
 def resetPath():
-    os.chdir('..')
     os.chdir('..')
     os.chdir('..')
 
@@ -52,7 +55,7 @@ def saveEditorLevel():
                 objectArray[i][j] = '01'
             if objectKey is 'player':
                 objectArray[i][j] = '10'
-    setPath()
+    setLevelDataPath()
     data = open(current_level, 'w')
     for objectRow in objectArray:
         data.write(' '.join(objectRow))
@@ -64,7 +67,7 @@ def saveEditorLevel():
 def loadLevel(level):
     global current_level
     current_level = level
-    setPath()
+    setLevelDataPath()
     data = open(level, 'r')
     lines = data.readlines()
     data.close()
@@ -88,6 +91,10 @@ def createObject(object, origin, size):
             objectManager.objectSet['level'].append(objects.Object(origin[0], origin[1], size[0], size[1]))
     if object[0] is '1':
         if object[1] is '0':
-            objectManager.objectSet['player'].append(objects.PhysicsObject(origin[0], origin[1], size[0], size[1]))
+            playerObject = objects.PhysicsObject(origin[0], origin[1], size[0], size[1])
+            setImageDataPath()
+            playerObject.setImage(pygame.image.load('test.png'))
+            resetPath()
+            objectManager.objectSet['player'].append(playerObject)
         if object[1] is '1':
             objectManager.objectSet['enemies'].append(objects.PhysicsObject(origin[0], origin[1], size[0], size[1]))

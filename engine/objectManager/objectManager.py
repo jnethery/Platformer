@@ -8,6 +8,10 @@ objectSet = {
     'enemies':[],
 }
 
+fontObjectSet = {
+    'fonts':[],
+}
+
 editorObjectSet = {
     'editorCursor':[],
 }
@@ -53,6 +57,12 @@ def getPhysicsObjects():
 def getLevelObjects():
     objectsList = []
     for object in objectSet['level']:
+        objectsList.append(object)
+    return objectsList
+
+def getFontObjects():
+    objectsList = []
+    for object in fontObjectSet['fonts']:
         objectsList.append(object)
     return objectsList
 

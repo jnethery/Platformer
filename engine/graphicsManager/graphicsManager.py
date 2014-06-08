@@ -3,14 +3,16 @@ import pygame
 import operator
 from engine import config
 from engine.processManager import process
-from engine.objectManager import objectManager
+from engine.objectManager import objectManager, objects
 
 screen_width = config.gfx['screen']['screen_width']
 screen_height = config.gfx['screen']['screen_height']
 screen_size = [screen_width, screen_height]
-screen = pygame.display.set_mode(screen_size)
 
-screen_scroll_trigger = [64*3, 64*2]
+screen = pygame.display.set_mode(screen_size)
+#screen = pygame.display.set_mode((screen_size),pygame.FULLSCREEN)
+
+screen_scroll_trigger = [screen_width/4, screen_height/6]
 screen_scroll_speed = [4, 4]
 screen_offset = [0, 0]
 
@@ -51,10 +53,8 @@ def flipScreen():
 def blit(object):
     if object.image is not None:
         screen.blit(object.image, object.getRect())
-        font = pygame.font.Font(pygame.font.match_font('Arial'), 12)
-        text = font.render('Test', 1, (255,255,255))
-        textRect = pygame.Rect(10,10,100,100)
-        screen.blit(text, textRect)
+    elif type(object) is objects.FontObject:
+        screen.blit(object.text, object.getRect())
     else:
         pygame.draw.rect(screen, object.getColor(), object.getRect())
 
@@ -63,6 +63,7 @@ def blitObjects():
     processList = []
     objects = objectManager.getObjects()
     objects = objectManager.cullObjects(objects)
+    objects += objectManager.getFontObjects()
     objects += objectManager.getEditorObjects()
     for object in objects:
         params = {}

@@ -21,6 +21,12 @@ def applyPhysics():
     for object in objects:
         object.applyPhysics()
 
+def getCollisionsWithColliders(object, colliders):
+    collisionIndices = object.collidelistall([collider.getRect() for collider in colliders])
+    if len(collisionIndices) > 0:
+        return True
+    return False
+
 def processCollisions():
     objects = objectManager.getObjects()
     objects = objectManager.cullObjects(objects)

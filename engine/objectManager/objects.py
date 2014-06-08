@@ -3,6 +3,7 @@ import pygame
 import operator
 from engine import config
 from engine.systemManager import clock
+from engine.triggerManager import trigger
 
 class Object(object):
 
@@ -10,6 +11,11 @@ class Object(object):
         self.Rect = pygame.Rect(x, y, w, h)
         self.color = [255,255,255]
         self.image = None
+        self.trigger = trigger.Trigger('engine.triggerManager.trigger.test', 'engine.triggerManager.trigger.hello')
+        self.trigger.callTrigger()
+
+    def setImage(self, image):
+        self.image = image
 
     def setColor(self, color):
         self.color = color
@@ -29,22 +35,28 @@ class Object(object):
     def displace(self, vector):
         self.Rect = self.Rect.move(vector[0], vector[1])
 
+class FontObject(Object):
+
+    def __init__(self, x, y, w, h):
+        super(self.__class__, self).__init__(x, y, w, h)
+        self.font = pygame.font.Font(pygame.font.match_font('Arial'), 12)
+        self.message = 'None'
+        self.text = self.font.render(self.message, 1, self.color)
+
+    def setMessage(self, message):
+        self.message = message
+
 class PhysicsObject(Object):
 
     def __init__(self, x, y, w, h):
         super(self.__class__, self).__init__(x, y, w, h)
         self.gravity = 10
         self.pixels_per_meter = 10
-
         self.velocity = [0, 0]
         self.run_velocity = 30
         self.jump_velocity = 40
         self.damping = self.run_velocity/2
         self.max_velocity = [self.run_velocity, 100]
-        import os
-        print os.getcwd()
-        self.image = pygame.image.load('test.png')
-
         self.mass = 1
 
     def applyPhysics(self):
