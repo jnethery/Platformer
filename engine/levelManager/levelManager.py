@@ -6,6 +6,7 @@ from engine.objectManager import objectManager, objects
 current_level = None
 
 def setPath():
+    os.chdir(os.path.join(os.getcwd(), 'engine'))
     os.chdir(os.path.join(os.getcwd(), 'levelManager'))
     os.chdir(os.path.join(os.getcwd(), 'data'))
 
