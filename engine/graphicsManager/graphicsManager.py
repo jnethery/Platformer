@@ -1,5 +1,6 @@
 __author__ = 'josiah'
 import pygame
+import operator
 from engine import config
 from engine.processManager import process
 from engine.objectManager import objectManager
@@ -11,9 +12,17 @@ screen = pygame.display.set_mode(screen_size)
 
 screen_scroll_trigger = [64*3, 64*2]
 screen_scroll_speed = [4, 4]
+screen_offset = [0, 0]
 
 RGB = [100, 100, 255]
 RGB_DIR = [1,1,1]
+
+def getEditorGraphicsProcessQueue():
+    graphicsProcessQueue = []
+    graphicsProcessQueue.append(process.getProcess('gfx', 'fill', None))
+    graphicsProcessQueue += blitObjects()
+    graphicsProcessQueue.append(process.getProcess('gfx', 'flip', None))
+    return graphicsProcessQueue
 
 def getGraphicsProcessQueue():
     graphicsProcessQueue = []
@@ -66,6 +75,11 @@ def checkForCameraMotion():
         moveScreen([0, screen_scroll_speed[1]])
 
 def moveScreen(vector):
+    global screen_offset
+    screen_offset = map(operator.add, screen_offset, vector)
     objects = objectManager.getObjects()
     for object in objects:
         object.displace(vector)
+
+def getScreenOffset():
+    return screen_offset

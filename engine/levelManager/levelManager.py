@@ -48,6 +48,7 @@ def saveEditorLevel():
         data.write(' '.join(objectRow))
         data.write('\n')
     data.close()
+    print '...level saved'
 
 def loadLevel(level):
     global current_level

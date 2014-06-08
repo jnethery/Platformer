@@ -3,7 +3,16 @@ import pygame
 from engine.processManager import process
 from engine.objectManager import objectManager
 
-movementKeys = [pygame.K_a, pygame.K_d]
+movementKeys = [pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d]
+
+def getEditorKeyboardProcessQueue():
+    processList = []
+    keys = pygame.key.get_pressed()
+    if movementKeyPressed(keys) and not keys[pygame.K_LCTRL]:
+        params = {}
+        params['vector'] = [(keys[pygame.K_a]-keys[pygame.K_d]), (keys[pygame.K_w]-keys[pygame.K_s])]
+        processList.append(process.getProcess('gfx', 'moveScreen', params))
+    return processList
 
 def getKeyboardProcessQueue(keydownEvents):
     processList = []

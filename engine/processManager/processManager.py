@@ -9,7 +9,7 @@ from engine.editor import editor
 def getEditorProcessQueue():
     processQueue = []
     processQueue += eventManager.getEditorEventProcessQueue()
-    processQueue += graphicsManager.getGraphicsProcessQueue()
+    processQueue += graphicsManager.getEditorGraphicsProcessQueue()
     return processQueue
 
 def getProcessQueue():
@@ -69,6 +69,8 @@ def runPhysicsProcess(method, params):
         physicsManager.jump(object)
 
 def runGraphicsProcess(method, params):
+    if method is 'moveScreen':
+        graphicsManager.moveScreen(params['vector'])
     if method is 'fill':
         graphicsManager.fillScreen()
     if method is 'flip':
