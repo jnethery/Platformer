@@ -10,7 +10,7 @@ def getEditorKeyboardProcessQueue():
     keys = pygame.key.get_pressed()
     if movementKeyPressed(keys) and not keys[pygame.K_LCTRL]:
         params = {}
-        params['vector'] = [(keys[pygame.K_a]-keys[pygame.K_d]), (keys[pygame.K_w]-keys[pygame.K_s])]
+        params['vector'] = [((keys[pygame.K_a]-keys[pygame.K_d])*4), ((keys[pygame.K_w]-keys[pygame.K_s])*4)]
         processList.append(process.getProcess('gfx', 'moveScreen', params))
     return processList
 

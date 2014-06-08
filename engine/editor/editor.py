@@ -1,4 +1,5 @@
 __author__ = 'josiah'
+import pygame
 import engine.config as config
 from engine.objectManager import objectManager, objects
 from engine.processManager import process
@@ -11,6 +12,15 @@ screen_height = config.gfx['screen']['screen_height']
 
 def saveLevel():
     levelManager.saveEditorLevel()
+
+def showEditorCursor(mousePosition):
+    pos_x = (mousePosition[0] % screen_width/tile_size)*tile_size
+    pos_y = (mousePosition[1] % screen_height/tile_size)*tile_size
+    pos_x, pos_y = addOffset(pos_x, pos_y)
+    if len(objectManager.editorObjectSet['editorCursor']) == 0:
+        objectManager.editorObjectSet['editorCursor'].append(objects.Object(pos_x, pos_y, tile_size, tile_size))
+    else:
+        objectManager.editorObjectSet['editorCursor'][0].setPosition([pos_x, pos_y])
 
 def addOffset(pos_x, pos_y):
     screen_offset = graphicsManager.getScreenOffset()
@@ -29,7 +39,6 @@ def addObject(mousePosition):
 
 def deleteObject(mousePosition):
     params = {}
-
     pos_x = (mousePosition[0] % screen_width/tile_size)*tile_size
     pos_y = (mousePosition[1] % screen_height/tile_size)*tile_size
     pos_x, pos_y = addOffset(pos_x, pos_y)

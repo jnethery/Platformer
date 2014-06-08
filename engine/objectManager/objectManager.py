@@ -5,7 +5,11 @@ __author__ = 'josiah'
 objectSet = {
     'level':[],
     'player':[],
-    'enemies':[]
+    'enemies':[],
+}
+
+editorObjectSet = {
+    'editorCursor':[],
 }
 
 def initializeObjects():
@@ -28,6 +32,13 @@ def getObjects():
     objectsList = []
     for objectKey in objectSet:
         for object in objectSet[objectKey]:
+            objectsList.append(object)
+    return objectsList
+
+def getEditorObjects():
+    objectsList = []
+    for objectKey in editorObjectSet:
+        for object in editorObjectSet[objectKey]:
             objectsList.append(object)
     return objectsList
 

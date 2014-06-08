@@ -55,6 +55,7 @@ def blitObjects():
     processList = []
     objects = objectManager.getObjects()
     objects = objectManager.cullObjects(objects)
+    objects += objectManager.getEditorObjects()
     for object in objects:
         params = {}
         params['object'] = object

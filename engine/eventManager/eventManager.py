@@ -16,6 +16,7 @@ def getEventProcessQueue():
 
 def getEditorEventProcessQueue():
     eventProcessQueue = []
+    editor.showEditorCursor(pygame.mouse.get_pos())
     events = pygame.event.get()
     for event in events:
         if event.type is pygame.KEYDOWN:
