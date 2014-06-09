@@ -54,7 +54,7 @@ def processCollision(object, collisionSurface):
 
         # test collisions on top
         if testVector[1] < 0:
-            origin = [object.getRect().left, object.getRect().top]
+            origin = [object.getRect().left, object.getRect().top + testVector[1]]
             offset = [object.getRect().w, 0]
             if getTestVector(origin, destination, offset).colliderect(collisionSurface.getRect()):
                 setPostCollisionPosition(object, collisionSurface)
@@ -68,7 +68,7 @@ def processCollision(object, collisionSurface):
 
         #test collisions on left
         if testVector[0] < 0:
-            origin = [object.getRect().left, object.getRect().top]
+            origin = [object.getRect().left + testVector[0], object.getRect().top]
             offset = [0, object.getRect().h]
             if getTestVector(origin, destination, offset).colliderect(collisionSurface.getRect()):
                 setPostCollisionPosition(object, collisionSurface)
@@ -88,10 +88,10 @@ def setPostCollisionPosition(object, collisionSurface):
         # testing top and bottom collisions
         if object.getRect().right - collisionOffsets[0] > collisionSurface.getRect().left and \
                         object.getRect().left + collisionOffsets[0] < collisionSurface.getRect().right:
-            if object.getRect().top <= collisionSurface.getRect().top:
+            if object.getRect().top < collisionSurface.getRect().top:
                 object.getRect().bottom = collisionSurface.getRect().top
                 y_vel = 0
-            if object.getRect().bottom >= collisionSurface.getRect().bottom:
+            if object.getRect().bottom > collisionSurface.getRect().bottom:
                 object.getRect().top = collisionSurface.getRect().bottom
                 y_vel = 0
 

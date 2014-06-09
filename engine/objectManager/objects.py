@@ -11,8 +11,6 @@ class Object(object):
         self.Rect = pygame.Rect(x, y, w, h)
         self.color = [255,255,255]
         self.image = None
-        self.trigger = trigger.Trigger('engine.triggerManager.trigger.test', 'engine.triggerManager.trigger.hello')
-        self.trigger.callTrigger()
 
     def setImage(self, image):
         self.image = image
