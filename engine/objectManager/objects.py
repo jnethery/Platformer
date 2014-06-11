@@ -36,7 +36,7 @@ class Object(object):
 class FontObject(Object):
 
     def __init__(self, x, y, w, h):
-        super(self.__class__, self).__init__(x, y, w, h)
+        super(FontObject, self).__init__(x, y, w, h)
         self.font = pygame.font.Font(pygame.font.match_font('Arial'), 12)
         self.message = 'None'
         self.text = self.font.render(self.message, 1, self.color)
@@ -47,7 +47,7 @@ class FontObject(Object):
 class PhysicsObject(Object):
 
     def __init__(self, x, y, w, h):
-        super(self.__class__, self).__init__(x, y, w, h)
+        super(PhysicsObject, self).__init__(x, y, w, h)
         self.gravity = 10
         self.pixels_per_meter = 10
         self.velocity = [0, 0]
@@ -97,3 +97,9 @@ class PhysicsObject(Object):
 
     def setMass(self, mass):
         self.mass = mass
+
+class Entity(PhysicsObject):
+
+    def __init__(self, x, y, w, h):
+        super(Entity, self).__init__(x, y, w, h)
+        self.health = 100

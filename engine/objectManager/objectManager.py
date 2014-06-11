@@ -16,6 +16,9 @@ editorObjectSet = {
     'editorCursor':[],
 }
 
+def isPhysicsObject(object):
+    return issubclass(object.__class__, objects.PhysicsObject)
+
 def initializeObjects():
     for object in objectSet['level']:
         object.setColor([120,120,120])
@@ -50,7 +53,7 @@ def getPhysicsObjects():
     objectsList = []
     for objectKey in objectSet:
         for object in objectSet[objectKey]:
-            if type(object) is objects.PhysicsObject:
+            if isPhysicsObject(object):
                 objectsList.append(object)
     return objectsList
 

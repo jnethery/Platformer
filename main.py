@@ -14,6 +14,7 @@ engineState = 0
 while engineState is 0:
     processManager.runProcessQueue(engineState)
     clock.clock.tick(config.physics['fps'])
+    print clock.clock.get_fps()
 
 #level editor loop
 while engineState is 1:

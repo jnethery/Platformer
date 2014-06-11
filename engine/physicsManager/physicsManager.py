@@ -3,6 +3,9 @@ import pygame
 import operator
 from engine.objectManager import objectManager, objects
 
+def isPhysicsObject(object):
+    return issubclass(object.__class__, objects.PhysicsObject)
+
 def processPhysics():
     processCollisions()
     applyPhysics()
@@ -36,9 +39,9 @@ def processCollisions():
             processCollision(objects[j], objects[i])
 
 def processCollision(object, collisionSurface):
-    if type(object) is not objects.PhysicsObject and type(collisionSurface) is not objects.PhysicsObject:
+    if not isPhysicsObject(object) and not isPhysicsObject(collisionSurface):
         pass
-    elif type(object) is not objects.PhysicsObject:
+    elif not isPhysicsObject(object):
         processCollision(collisionSurface, object)
     else:
         origin = object.getPosition()
@@ -78,7 +81,7 @@ def getTestVector(origin, destination, offset):
                                  destination[0] - origin[0] + offset[0], destination[1] - origin[1] + offset[1])
 
 def setPostCollisionPosition(object, collisionSurface):
-    if type(object) is objects.PhysicsObject:
+    if isPhysicsObject(object):
 
         vel = object.getVelocity()
         x_vel = vel[0]

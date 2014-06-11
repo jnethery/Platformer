@@ -91,7 +91,7 @@ def createObject(object, origin, size):
             objectManager.objectSet['level'].append(objects.Object(origin[0], origin[1], size[0], size[1]))
     if object[0] is '1':
         if object[1] is '0':
-            playerObject = objects.PhysicsObject(origin[0], origin[1], size[0], size[1])
+            playerObject = objects.Entity(origin[0], origin[1], size[0], size[1])
             setImageDataPath()
             playerObject.setImage(pygame.image.load('test.png'))
             resetPath()
