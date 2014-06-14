@@ -103,3 +103,9 @@ class Entity(PhysicsObject):
     def __init__(self, x, y, w, h):
         super(Entity, self).__init__(x, y, w, h)
         self.health = 100
+
+    def applyDamage(self, damage):
+        self.health -= damage
+
+    def isAlive(self):
+        return self.health > 0

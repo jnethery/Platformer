@@ -22,10 +22,12 @@ def getKeyboardProcessQueue(keydownEvents):
     if keys[pygame.K_q]:
         processList.append(process.getProcess('sys', 'exit', None))
     if movementKeyPressed(keys):
-        params = {}
-        params['object'] = objectManager.getPlayer()
-        params['vector'] = [(keys[pygame.K_d]-keys[pygame.K_a])*params['object'].run_velocity, 0]
-        processList.append(process.getProcess('physics', 'applyVelocity', params))
+        player = objectManager.getPlayer()
+        if player is not None:
+            params = {}
+            params['object'] = player
+            params['vector'] = [(keys[pygame.K_d]-keys[pygame.K_a])*params['object'].run_velocity, 0]
+            processList.append(process.getProcess('physics', 'applyVelocity', params))
 
     # Handling for PRESSED keys
     for event in keydownEvents:

@@ -2,6 +2,8 @@ import engine.config as config
 from engine.objectManager import objects
 __author__ = 'josiah'
 
+entitySets = ['player', 'enemies']
+
 objectSet = {
     'level':[],
     'player':[],
@@ -18,6 +20,9 @@ editorObjectSet = {
 
 def isPhysicsObject(object):
     return issubclass(object.__class__, objects.PhysicsObject)
+
+def isEntity(object):
+    return issubclass(object.__class__, objects.Entity)
 
 def initializeObjects():
     for object in objectSet['level']:
@@ -57,6 +62,20 @@ def getPhysicsObjects():
                 objectsList.append(object)
     return objectsList
 
+def getEntityObjects():
+    objectsList = []
+    physicsObjects = getPhysicsObjects()
+    for object in physicsObjects:
+        if isEntity(object):
+            objectsList.append(object)
+    return objectsList
+
+def killObjects():
+    for entitySet in entitySets:
+        for object in objectSet[entitySet]:
+            if not object.isAlive():
+                objectSet[entitySet].remove(object)
+
 def getLevelObjects():
     objectsList = []
     for object in objectSet['level']:
@@ -70,4 +89,8 @@ def getFontObjects():
     return objectsList
 
 def getPlayer():
-    return objectSet['player'][0]
+    try:
+        player = objectSet['player'][0]
+    except:
+        player = None
+    return player

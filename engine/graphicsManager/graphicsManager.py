@@ -73,16 +73,16 @@ def blitObjects():
 
 def checkForCameraMotion():
     player = objectManager.getPlayer()
+    if player is not None:
+        if (player.getRect().right > screen_width - screen_scroll_trigger[0]):
+            moveScreen([-screen_scroll_speed[0], 0])
+        if (player.getRect().left < screen_scroll_trigger[0]):
+            moveScreen([screen_scroll_speed[0], 0])
 
-    if (player.getRect().right > screen_width - screen_scroll_trigger[0]):
-        moveScreen([-screen_scroll_speed[0], 0])
-    if (player.getRect().left < screen_scroll_trigger[0]):
-        moveScreen([screen_scroll_speed[0], 0])
-
-    if (player.getRect().bottom > screen_height - screen_scroll_trigger[1]):
-        moveScreen([0, -screen_scroll_speed[1]])
-    if (player.getRect().top < screen_scroll_trigger[1]):
-        moveScreen([0, screen_scroll_speed[1]])
+        if (player.getRect().bottom > screen_height - screen_scroll_trigger[1]):
+            moveScreen([0, -screen_scroll_speed[1]])
+        if (player.getRect().top < screen_scroll_trigger[1]):
+            moveScreen([0, screen_scroll_speed[1]])
 
 def moveScreen(vector):
     global screen_offset
