@@ -53,13 +53,13 @@ def saveEditorLevel():
     for j in range(0, columns, 1):
         objectArray.append([])
         for i in range(0, rows, 1):
-            objectArray[j].append(objectCodes['space'])
+            objectArray[j].append(str(objectCodes['space']))
     for objectKey in objectManager.objectSet:
         for object in objectManager.objectSet[objectKey]:
             objectRect = object.getRect()
             i = (objectRect.y - min_y)/tile_size
             j = (objectRect.x - min_x)/tile_size
-            objectArray[i][j] = objectCodes[objectKey]
+            objectArray[i][j] = str(objectCodes[objectKey])
     setLevelDataPath()
     data = open(current_level, 'w')
     for objectRow in objectArray:

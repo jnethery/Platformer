@@ -8,16 +8,30 @@ from engine.objectManager import objectManager, objects
 screen_width = config.gfx['screen']['screen_width']
 screen_height = config.gfx['screen']['screen_height']
 screen_size = [screen_width, screen_height]
+editor_menu_width = config.editor['menu_width']
 
-screen = pygame.display.set_mode(screen_size)
-#screen = pygame.display.set_mode((screen_size),pygame.FULLSCREEN)
+screen = None
 
-screen_scroll_trigger = [screen_width/4, screen_height/6]
+screen_scroll_trigger = [screen_width/3, screen_height/6]
 screen_scroll_speed = [4, 4]
 screen_offset = [0, 0]
 
 RGB = [100, 100, 255]
 RGB_DIR = [1,1,1]
+
+def initializeScreen(engineState):
+    global screen
+    if engineState is 0:
+        screen = pygame.display.set_mode(screen_size)
+    elif engineState is 1:
+        screen_size[0] += editor_menu_width
+        screen = pygame.display.set_mode(screen_size)
+        initializeEditorObjects()
+
+def initializeEditorObjects():
+    editorMenu = objects.Object(screen_width, 0, editor_menu_width, screen_height)
+    editorMenu.setColor([20,20,20])
+    objectManager.editorObjectSet['editorMenu'].append(editorMenu)
 
 def getEditorGraphicsProcessQueue():
     graphicsProcessQueue = []

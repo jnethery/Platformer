@@ -20,6 +20,7 @@ fontObjectSet = {
 }
 
 editorObjectSet = {
+    'editorMenu':[],
     'editorCursor':[],
 }
 
@@ -74,7 +75,7 @@ def getEditorObjects():
     objectsList = []
     for objectKey in editorObjectSet:
         for object in editorObjectSet[objectKey]:
-            append(objectsList, object)
+            objectsList.append(object)
     return objectsList
 
 def getPhysicsObjects():

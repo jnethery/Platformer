@@ -14,6 +14,10 @@ gfx = {
     }
 }
 
+editor = {
+    'menu_width':200
+}
+
 physics = {
     'fps':60
 }
