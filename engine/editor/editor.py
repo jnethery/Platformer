@@ -1,5 +1,4 @@
 __author__ = 'josiah'
-import pygame
 import engine.config as config
 from engine.objectmanager import objectmanager, objectclasses
 from engine.procmanager import process

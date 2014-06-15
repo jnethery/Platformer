@@ -1,5 +1,7 @@
 __author__ = 'josiah'
-import sys, pygame, cProfile
+import sys
+import pygame
+import cProfile
 from engine.levelmanager import levelmanager
 from engine.procmanager import procmanager
 from engine.gfxmanager import gfxmanager

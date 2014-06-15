@@ -1,7 +1,7 @@
 __author__ = 'josiah'
 import pygame
 import operator
-from engine.objectmanager import objectmanager, objectclasses
+from engine.objectmanager import objectmanager
 
 def is_physics_object(object):
     return objectmanager.physics_objects.__contains__(object)

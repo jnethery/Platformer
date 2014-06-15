@@ -1,5 +1,4 @@
 import engine.config as config
-from engine.objectmanager import objectclasses
 __author__ = 'josiah'
 
 screen_height = config.gfx['screen']['screen_height']
