@@ -1,7 +1,6 @@
 __author__ = 'josiah'
 import engine.config as config
 from engine.objectmanager import objectmanager, objectclasses
-from engine.procmanager import process
 from engine.levelmanager import levelmanager
 from engine.gfxmanager import gfxmanager
 

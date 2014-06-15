@@ -3,7 +3,6 @@ import sys
 import pygame
 import keyboardmanager
 from engine.editor import editor
-from engine.procmanager import process
 
 def run_event_processes():
     events = pygame.event.get()
