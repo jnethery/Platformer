@@ -86,7 +86,7 @@ def load_level(level):
             origin = [tile_size*j, tile_size*i]
             size = [tile_size, tile_size]
             create_object(object_list[j], origin, size)
-    if len(objectmanager.object_sets['player']) is 0:
+    if len(objectmanager.object_sets['player']) == 0:
         print 'Player object not set!'
         sys.exit()
     objectmanager.init_objects()

@@ -51,11 +51,11 @@ class PhysicsObject(Object):
     def __init__(self, x, y, w, h):
         super(PhysicsObject, self).__init__(x, y, w, h)
         self.gravity = 10
-        self.pixels_per_meter = 10
+        self.pixels_per_meter = 12
         self.velocity = [0, 0]
         self.run_velocity = 30
         self.jump_velocity = 40
-        self.damping = self.run_velocity/2
+        self.damping = self.run_velocity/1
         self.max_velocity = [self.run_velocity, 100]
         self.mass = 1
         self.is_phys = True
