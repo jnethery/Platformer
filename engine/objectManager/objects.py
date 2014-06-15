@@ -12,6 +12,9 @@ class Object(object):
         self.color = [255,255,255]
         self.image = None
 
+        self.isPhysicsObject = False
+        self.isEntity = False
+
     def setImage(self, image):
         self.image = image
 
@@ -56,6 +59,8 @@ class PhysicsObject(Object):
         self.damping = self.run_velocity/2
         self.max_velocity = [self.run_velocity, 100]
         self.mass = 1
+
+        self.isPhysicsObject = True
 
     def applyPhysics(self):
         self.applyGravity()
@@ -103,6 +108,8 @@ class Entity(PhysicsObject):
     def __init__(self, x, y, w, h):
         super(Entity, self).__init__(x, y, w, h)
         self.health = 100
+
+        self.isPhysicsObject = True
 
     def applyDamage(self, damage):
         self.health -= damage

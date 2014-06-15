@@ -4,7 +4,7 @@ import operator
 from engine.objectManager import objectManager, objects
 
 def isPhysicsObject(object):
-    return issubclass(object.__class__, objects.PhysicsObject)
+    return objectManager.physicsObjects.__contains__(object)
 
 def processPhysics():
     processCollisions()
@@ -20,7 +20,6 @@ def jump(object):
 
 def applyPhysics():
     objects = objectManager.getPhysicsObjects()
-    objects = objectManager.cullObjects(objects)
     for object in objects:
         object.applyPhysics()
 
@@ -32,17 +31,20 @@ def getCollisionsWithColliders(object, colliders):
 
 def processCollisions():
     objects = objectManager.getObjects()
-    objects = objectManager.cullObjects(objects)
+    objectIsPhysics = [None]*len(objects)
     for i in range(0, len(objects), 1):
+        objectIsPhysics[i] = isPhysicsObject(objects[i])
         for j in range(i+1, len(objects), 1):
-            processCollision(objects[i], objects[j])
-            processCollision(objects[j], objects[i])
+            if i == 0:
+                objectIsPhysics[j] = isPhysicsObject(objects[j])
+            processCollision(objects[i], objects[j], objectIsPhysics[i], objectIsPhysics[j])
+            processCollision(objects[j], objects[i], objectIsPhysics[j], objectIsPhysics[i])
 
-def processCollision(object, collisionSurface):
-    if not isPhysicsObject(object) and not isPhysicsObject(collisionSurface):
+def processCollision(object, collisionSurface, objectIsPhysics, collisionSurfaceIsPhysics):
+    if not objectIsPhysics and not collisionSurfaceIsPhysics:
         pass
-    elif not isPhysicsObject(object):
-        processCollision(collisionSurface, object)
+    elif not objectIsPhysics:
+        processCollision(collisionSurface, object, collisionSurfaceIsPhysics, objectIsPhysics)
     else:
         origin = object.getPosition()
         destination = map(operator.add, origin, object.getVelocityDisplacementVector())
@@ -78,7 +80,7 @@ def processCollision(object, collisionSurface):
 
 def getTestVector(origin, destination, offset):
     return pygame.Rect(origin[0], origin[1],
-                                 destination[0] - origin[0] + offset[0], destination[1] - origin[1] + offset[1])
+        destination[0] - origin[0] + offset[0], destination[1] - origin[1] + offset[1])
 
 def setPostCollisionPosition(object, collisionSurface):
     if isPhysicsObject(object):
@@ -112,7 +114,6 @@ def setPostCollisionPosition(object, collisionSurface):
 
 def isGrounded(object):
     levelObjects = objectManager.getLevelObjects()
-    levelObjects = objectManager.cullObjects(levelObjects)
     levelRects = [levelObject.getRect() for levelObject in levelObjects]
     testRect = object.getRect()
     testRect = testRect.move(0,1)

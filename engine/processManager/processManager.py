@@ -14,6 +14,7 @@ def getEditorProcessQueue():
 
 def getProcessQueue():
     processQueue = []
+    objectManager.setPhysicsObjects()
     physicsManager.processPhysics()
     objectManager.killObjects()
     processQueue += eventManager.getEventProcessQueue()

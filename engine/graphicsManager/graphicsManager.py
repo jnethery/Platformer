@@ -62,7 +62,6 @@ def blit(object):
 def blitObjects():
     processList = []
     objects = objectManager.getObjects()
-    objects = objectManager.cullObjects(objects)
     objects += objectManager.getFontObjects()
     objects += objectManager.getEditorObjects()
     for object in objects:
@@ -73,21 +72,27 @@ def blitObjects():
 
 def checkForCameraMotion():
     player = objectManager.getPlayer()
+    cameraMotion = False
     if player is not None:
         if (player.getRect().right > screen_width - screen_scroll_trigger[0]):
             moveScreen([-screen_scroll_speed[0], 0])
-        if (player.getRect().left < screen_scroll_trigger[0]):
+            cameraMotion = True
+        elif (player.getRect().left < screen_scroll_trigger[0]):
             moveScreen([screen_scroll_speed[0], 0])
+            cameraMotion = True
 
         if (player.getRect().bottom > screen_height - screen_scroll_trigger[1]):
             moveScreen([0, -screen_scroll_speed[1]])
-        if (player.getRect().top < screen_scroll_trigger[1]):
+            cameraMotion = True
+        elif (player.getRect().top < screen_scroll_trigger[1]):
             moveScreen([0, screen_scroll_speed[1]])
+            cameraMotion = True
+    return cameraMotion
 
 def moveScreen(vector):
     global screen_offset
     screen_offset = map(operator.add, screen_offset, vector)
-    objects = objectManager.getObjects()
+    objects = objectManager.getAllObjects()
     for object in objects:
         object.displace(vector)
 

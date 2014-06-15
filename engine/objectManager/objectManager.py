@@ -2,13 +2,17 @@ import engine.config as config
 from engine.objectManager import objects
 __author__ = 'josiah'
 
-entitySets = ['player', 'enemies']
+physicsObjectSets = ['player', 'enemies']
+entitySets = physicsObjectSets
 
 objectSet = {
     'level':[],
+    'environment':[],
     'player':[],
     'enemies':[],
 }
+
+physicsObjects = None
 
 fontObjectSet = {
     'fonts':[],
@@ -19,7 +23,7 @@ editorObjectSet = {
 }
 
 def isPhysicsObject(object):
-    return issubclass(object.__class__, objects.PhysicsObject)
+    return object.isPhysicsObject
 
 def isEntity(object):
     return issubclass(object.__class__, objects.Entity)
@@ -31,43 +35,55 @@ def initializeObjects():
 screen_height = config.gfx['screen']['screen_height']
 screen_width = config.gfx['screen']['screen_width']
 
-def cullObjects(objectList):
-    culledList = []
-    for object in objectList:
-        objectRect = object.getRect()
-        if objectRect.x < screen_width and objectRect.x + objectRect.w >= 0 and \
-            objectRect.y < screen_height and objectRect.y + objectRect.h >= 0:
-                culledList.append(object)
-    return culledList
+def append(list, object):
+    if cullObject(object) is not None:
+        list.append(object)
+
+def cullObject(object):
+    objectRect = object.getRect()
+    if objectRect.x < screen_width and objectRect.x + objectRect.w >= 0 and \
+        objectRect.y < screen_height and objectRect.y + objectRect.h >= 0:
+        return object
+    return None
+
+def getAllObjects():
+    objectsList = []
+    for objectKey in objectSet:
+        for object in objectSet[objectKey]:
+            objectsList.append(object)
+    return objectsList
 
 def getObjects():
     objectsList = []
     for objectKey in objectSet:
         for object in objectSet[objectKey]:
-            objectsList.append(object)
+            append(objectsList, object)
     return objectsList
 
 def getEditorObjects():
     objectsList = []
     for objectKey in editorObjectSet:
         for object in editorObjectSet[objectKey]:
-            objectsList.append(object)
+            append(objectsList, object)
     return objectsList
 
 def getPhysicsObjects():
+    return physicsObjects
+
+def setPhysicsObjects():
     objectsList = []
-    for objectKey in objectSet:
+    for objectKey in physicsObjectSets:
         for object in objectSet[objectKey]:
-            if isPhysicsObject(object):
-                objectsList.append(object)
-    return objectsList
+            append(objectsList, object)
+    global physicsObjects
+    physicsObjects = objectsList
 
 def getEntityObjects():
     objectsList = []
     physicsObjects = getPhysicsObjects()
     for object in physicsObjects:
         if isEntity(object):
-            objectsList.append(object)
+            append(objectsList, object)
     return objectsList
 
 def killObjects():
@@ -79,13 +95,13 @@ def killObjects():
 def getLevelObjects():
     objectsList = []
     for object in objectSet['level']:
-        objectsList.append(object)
+        append(objectsList, object)
     return objectsList
 
 def getFontObjects():
     objectsList = []
     for object in fontObjectSet['fonts']:
-        objectsList.append(object)
+        append(objectsList, object)
     return objectsList
 
 def getPlayer():

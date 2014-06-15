@@ -27,7 +27,7 @@ def saveEditorLevel():
     min_y = sys.maxint
     max_x = 0
     max_y = 0
-    objects = objectManager.getObjects()
+    objects = objectManager.getAllObjects()
     for object in objects:
         objectRect = object.getRect()
         if objectRect.x < min_x:
@@ -97,4 +97,4 @@ def createObject(object, origin, size):
             resetPath()
             objectManager.objectSet['player'].append(playerObject)
         if object[1] is '1':
-            objectManager.objectSet['enemies'].append(objects.PhysicsObject(origin[0], origin[1], size[0], size[1]))
+            objectManager.objectSet['enemies'].append(objects.Entity(origin[0], origin[1], size[0], size[1]))
