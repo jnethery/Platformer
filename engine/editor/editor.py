@@ -10,7 +10,7 @@ screen_width = config.gfx['screen']['screen_width']
 screen_height = config.gfx['screen']['screen_height']
 menu_width = config.editor['menu_width']
 
-def save_level():
+def save_editor_level():
     levelmanager.save_editor_level()
 
 def show_editor_cursor(mouse_pos):

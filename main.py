@@ -20,7 +20,7 @@ gfxmanager.init_screen(engine_state)
 
 #game loop
 while engine_state == 0:
-    procmanager.run_proc_queue(engine_state)
+    procmanager.run_processes(engine_state)
     clock.clock.tick(config.physics['fps'])
     if profile_state and clock.clock.get_fps() < 55 and pygame.time.get_ticks() > 1000:
         cProfile.run('procmanager.runProcessQueue(0)', None, sort = 1)
@@ -30,5 +30,5 @@ while engine_state == 0:
 
 #level editor loop
 while engine_state == 1:
-    procmanager.run_proc_queue(engine_state)
+    procmanager.run_processes(engine_state)
     clock.clock.tick(config.physics['fps'])

@@ -2,7 +2,6 @@ __author__ = 'josiah'
 import pygame
 import operator
 from engine import config
-from engine.procmanager import process
 from engine.objectmanager import objectmanager, objectclasses
 
 screen_width = config.gfx['screen']['screen_width']
@@ -33,20 +32,16 @@ def init_editor_objects():
     editor_menu.set_color([20,20,20])
     objectmanager.editor_object_sets['editor_menu'].append(editor_menu)
 
-def get_editor_graphics_process_queue():
-    graphics_process_queue = []
-    graphics_process_queue.append(process.get_process('gfx', 'fill', None))
-    graphics_process_queue += blit_objects()
-    graphics_process_queue.append(process.get_process('gfx', 'flip', None))
-    return graphics_process_queue
+def run_editor_gfx_processes():
+    fill_screen()
+    blit_objects()
+    flip_screen()
 
-def get_graphics_process_queue():
-    graphics_process_queue = []
-    graphics_process_queue.append(process.get_process('gfx', 'fill', None))
+def run_gfx_processes():
+    fill_screen()
     get_camera_motion()
-    graphics_process_queue += blit_objects()
-    graphics_process_queue.append(process.get_process('gfx', 'flip', None))
-    return graphics_process_queue
+    blit_objects()
+    flip_screen()
 
 def fill_screen():
     if RGB_DIR[0] is 1:
@@ -74,15 +69,11 @@ def blit(object):
 
 
 def blit_objects():
-    process_list = []
     objects = objectmanager.get_objects()
     objects += objectmanager.get_font_objects()
     objects += objectmanager.get_editor_objects()
     for object in objects:
-        params = {}
-        params['object'] = object
-        process_list.append(process.get_process('gfx', 'blit', params))
-    return process_list
+        blit(object)
 
 def get_camera_motion():
     player = objectmanager.get_player()
