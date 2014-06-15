@@ -30,36 +30,28 @@ def add_offset(pos_x, pos_y):
 
 def add_object(mouse_pos):
     if mouse_pos[0] < screen_width - tile_size:
-        params = {}
         pos_x = (mouse_pos[0] % screen_width/tile_size)*tile_size
         pos_y = (mouse_pos[1] % screen_height/tile_size)*tile_size
         pos_x, pos_y = add_offset(pos_x, pos_y)
-        params['object'] = objectclasses.Object(pos_x, pos_y, tile_size, tile_size)
-        params['object'].set_color([0,0,0])
-        return process.get_process('editor', 'add_object', params)
-    return process.get_process(None, None, None)
+        object = objectclasses.Object(pos_x, pos_y, tile_size, tile_size)
+        object.set_color([0,0,0])
+        objectmanager.object_sets['level'].append(object)
 
 def delete_object(mouse_pos):
     if mouse_pos[0] < screen_width - tile_size:
-        params = {}
         pos_x = (mouse_pos[0] % screen_width/tile_size)*tile_size
         pos_y = (mouse_pos[1] % screen_height/tile_size)*tile_size
         pos_x, pos_y = add_offset(pos_x, pos_y)
-        object = get_object_at_coord(pos_x, pos_y)
-        params['object'] = object['object']
-        params['type'] = object['type']
-        return process.get_process('editor', 'delete_object', params)
-    return process.get_process(None, None, None)
+        object_data = get_object_at_coord(pos_x, pos_y)
+        if object_data is not None:
+            object = object_data['object']
+            type = object_data['type']
+            objectmanager.object_sets[type].remove(object)
 
 def get_object_at_coord(pos_x, pos_y):
-    params = {}
     for object_key in objectmanager.object_sets:
         for object in objectmanager.object_sets[object_key]:
             object_rect = object.get_rect()
             if object_rect.x == pos_x and object_rect.y == pos_y:
-                params['object'] = object
-                params['type'] = object_key
-                return params
-    params['object'] = None
-    params['type'] = None
-    return params
+                return {'object':object, 'type':object_key}
+    return None
