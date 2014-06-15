@@ -1,6 +1,6 @@
 __author__ = 'josiah'
 
-def getProcess(system, method, params):
+def get_process(system, method, params):
     return {
         'system':system,
         'method':method,

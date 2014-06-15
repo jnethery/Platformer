@@ -1,32 +1,32 @@
 __author__ = 'josiah'
 import sys, pygame, cProfile
-from engine.levelManager import levelManager
-from engine.processManager import processManager
-from engine.graphicsManager import graphicsManager
-from engine.systemManager import clock
+from engine.levelmanager import levelmanager
+from engine.procmanager import procmanager
+from engine.gfxmanager import gfxmanager
+from engine.sysmanager import clock
 from engine import config
 
 pygame.init()
-levelManager.loadLevel('001')
+levelmanager.load_level('001')
 
-engineState = 1
-profileState = 0
-showFps = 0
+engine_state = 0
+profile_state = False
+show_fps = False
 
 #initialize graphics
-graphicsManager.initializeScreen(engineState)
+gfxmanager.init_screen(engine_state)
 
 #game loop
-while engineState is 0:
-    processManager.runProcessQueue(engineState)
+while engine_state == 0:
+    procmanager.run_proc_queue(engine_state)
     clock.clock.tick(config.physics['fps'])
-    if profileState is 1 and clock.clock.get_fps() < 55 and pygame.time.get_ticks() > 1000:
-        cProfile.run('processManager.runProcessQueue(0)', None, sort=1)
+    if profile_state and clock.clock.get_fps() < 55 and pygame.time.get_ticks() > 1000:
+        cProfile.run('procmanager.runProcessQueue(0)', None, sort = 1)
         sys.exit()
-    if showFps is 1:
+    if show_fps:
         print clock.clock.get_fps()
 
 #level editor loop
-while engineState is 1:
-    processManager.runProcessQueue(engineState)
+while engine_state == 1:
+    procmanager.run_proc_queue(engine_state)
     clock.clock.tick(config.physics['fps'])
