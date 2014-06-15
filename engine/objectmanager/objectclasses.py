@@ -7,7 +7,8 @@ from engine.triggermanager import trigger
 
 class Object(object):
 
-    def __init__(self, x, y, w, h):
+    def __init__(self, x, y, w, h, idx = None):
+        self.index = idx
         self.Rect = pygame.Rect(x, y, w, h)
         self.color = [255,255,255]
         self.image = None
@@ -37,8 +38,8 @@ class Object(object):
 
 class FontObject(Object):
 
-    def __init__(self, x, y, w, h):
-        super(FontObject, self).__init__(x, y, w, h)
+    def __init__(self, x, y, w, h, idx):
+        super(FontObject, self).__init__(x, y, w, h, idx)
         self.font = pygame.font.Font(pygame.font.match_font('Arial'), 12)
         self.msg = 'None'
         self.text = self.font.render(self.msg, 1, self.color)
@@ -48,8 +49,8 @@ class FontObject(Object):
 
 class PhysicsObject(Object):
 
-    def __init__(self, x, y, w, h):
-        super(PhysicsObject, self).__init__(x, y, w, h)
+    def __init__(self, x, y, w, h, idx):
+        super(PhysicsObject, self).__init__(x, y, w, h, idx)
         self.gravity = 10
         self.pixels_per_meter = 12
         self.velocity = [0, 0]
@@ -103,8 +104,8 @@ class PhysicsObject(Object):
 
 class Entity(PhysicsObject):
 
-    def __init__(self, x, y, w, h):
-        super(Entity, self).__init__(x, y, w, h)
+    def __init__(self, x, y, w, h, idx):
+        super(Entity, self).__init__(x, y, w, h, idx)
         self.health = 100
         self.is_phys = True
 

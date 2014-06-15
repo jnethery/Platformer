@@ -14,7 +14,7 @@ show_fps = False
 
 #initialize
 pygame.init()
-levelmanager.load_level('001')
+levelmanager.load_level('000')
 gfxmanager.init_screen(engine_state)
 
 #game loop

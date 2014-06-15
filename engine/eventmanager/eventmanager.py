@@ -1,5 +1,4 @@
 __author__ = 'josiah'
-import sys
 import pygame
 import keyboardmanager
 from engine.editor import editor
@@ -14,14 +13,11 @@ def run_event_processes():
 
 def run_editor_event_processes():
     events = pygame.event.get()
+    keydown_events = []
     for event in events:
         if event.type is pygame.KEYDOWN:
-            if event.key is pygame.K_q:
-                sys.exit()
-            if event.key is pygame.K_s and event.mod == 64:
-                print 'Saving level...'
-                editor.save_editor_level()
-    keyboardmanager.run_editor_keyboard_processes()
+            keydown_events.append(event)
+    keyboardmanager.run_editor_keyboard_processes(keydown_events)
 
     # Mouse stuff
     mouse_pos = pygame.mouse.get_pos()

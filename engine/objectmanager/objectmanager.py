@@ -32,12 +32,6 @@ def is_physics_object(object):
 def is_entity(object):
     return object.is_ent
 
-def init_objects():
-    for object in object_sets['level']:
-        object.set_color([120,120,120])
-    for object in object_sets['environment']:
-        object.set_color([120,120,120])
-
 def cull_append(list, object):
     if cull(object) is not None:
         list.append(object)
