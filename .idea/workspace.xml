@@ -26,7 +26,7 @@
       <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="585">
+            <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="585">
               <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
               <folding>
                 <element signature="e#22#32#0" expanded="true" />
@@ -69,21 +69,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="object_data" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="object_data" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/object_data/object_data">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.03937008" vertical-offset="0" max-vertical-offset="381">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
               <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="levelmanager.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="levelmanager.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/engine/levelmanager/levelmanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1824" max-vertical-offset="2220">
-              <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.6456693" vertical-offset="744" max-vertical-offset="2220">
+              <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
@@ -126,7 +126,7 @@
       <file leaf-file-name="keyboardmanager.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/eventmanager/keyboardmanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="99" max-vertical-offset="840">
+            <state vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="840">
               <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#22#32#0" expanded="true" />
@@ -179,17 +179,18 @@
         <option value="$PROJECT_DIR$/data/object_data/object_index.py" />
         <option value="$PROJECT_DIR$/data/object_data/object_database.py" />
         <option value="$PROJECT_DIR$/data/object_data/object_index" />
-        <option value="$PROJECT_DIR$/data/levels/000" />
         <option value="$PROJECT_DIR$/engine/objectmanager/objectclasses.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/engine/objectmanager/objectmanager.py" />
         <option value="$PROJECT_DIR$/engine/gfxmanager/gfxmanager.py" />
-        <option value="$PROJECT_DIR$/engine/levelmanager/levelmanager.py" />
         <option value="$PROJECT_DIR$/data/object_data/object_data" />
+        <option value="$PROJECT_DIR$/data/levels/000" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/engine/levelmanager/levelmanager.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="44" />
     <option name="y" value="25" />
     <option name="width" value="1336" />
     <option name="height" value="722" />
@@ -484,7 +485,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1336" height="722" extended-state="0" />
+    <frame x="44" y="25" width="1336" height="722" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -873,30 +874,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/levels/000">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/editor/editor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="549" max-vertical-offset="930">
           <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
           <folding>
             <element signature="e#22#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="585">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding>
-            <element signature="e#22#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -927,13 +910,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/levelmanager/levelmanager.py">
+    <entry file="file://$PROJECT_DIR$/data/object_data/object_data">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1824" max-vertical-offset="2220">
-          <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
+          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="585">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#22#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/levels/000">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -947,11 +946,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/object_data/object_data">
+    <entry file="file://$PROJECT_DIR$/engine/levelmanager/levelmanager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03937008" vertical-offset="0" max-vertical-offset="381">
-          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
-          <folding />
+        <state vertical-scroll-proportion="0.6456693" vertical-offset="744" max-vertical-offset="2220">
+          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+          <folding>
+            <element signature="e#22#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

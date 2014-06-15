@@ -58,13 +58,13 @@ def save_editor_level():
     for j in range(0, columns, 1):
         object_array.append([])
         for i in range(0, rows, 1):
-            object_array[j].append(str(object_codes['space']))
+            object_array[j].append('FFFF')
     for object_key in objectmanager.object_sets:
         for object in objectmanager.object_sets[object_key]:
             object_rect = object.get_rect()
             i = (object_rect.y - min_y)/tile_size
             j = (object_rect.x - min_x)/tile_size
-            object_array[i][j] = str(object_codes[object_key])
+            object_array[i][j] = '%04X' % object.index
     set_level_data_path()
     data = open(current_level, 'w')
     for object_row in object_array:
