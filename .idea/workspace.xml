@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gfxmanager.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="gfxmanager.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/engine/gfxmanager/gfxmanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="1785">
-              <caret line="102" column="19" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.2605459" vertical-offset="270" max-vertical-offset="1785">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
               <folding>
                 <element signature="e#22#35#0" expanded="true" />
               </folding>
@@ -93,7 +93,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editor.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="editor.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/editor/editor.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
@@ -147,6 +147,7 @@
         <option value="$PROJECT_DIR$/engine/objectmanager/objectmanager.py" />
         <option value="$PROJECT_DIR$/engine/physicsmanager/physicsmanager.py" />
         <option value="$PROJECT_DIR$/engine/editor/editor.py" />
+        <option value="$PROJECT_DIR$/engine/gfxmanager/gfxmanager.py" />
       </list>
     </option>
   </component>
@@ -1048,16 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/gfxmanager/gfxmanager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="1785">
-          <caret line="102" column="19" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
-          <folding>
-            <element signature="e#22#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/eventmanager/keyboardmanager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
@@ -1084,6 +1075,16 @@
           <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
           <folding>
             <element signature="e#22#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/gfxmanager/gfxmanager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2605459" vertical-offset="270" max-vertical-offset="1785">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+          <folding>
+            <element signature="e#22#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

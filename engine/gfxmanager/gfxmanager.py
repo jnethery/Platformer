@@ -21,9 +21,9 @@ RGB_DIR = [1,1,1]
 
 def init_screen(engine_state):
     global screen
-    if engine_state is 0:
+    if engine_state == 0:
         screen = pygame.display.set_mode(screen_size)
-    elif engine_state is 1:
+    elif engine_state == 1:
         screen_size[0] += editor_menu_width
         screen = pygame.display.set_mode(screen_size)
         init_editor_objects()
