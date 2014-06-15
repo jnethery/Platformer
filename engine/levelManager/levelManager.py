@@ -6,6 +6,14 @@ from engine.objectManager import objectManager, objects
 
 current_level = None
 
+objectCodes = {
+    'space':0,
+    'level':1,
+    'environment':2,
+    'player':3,
+    'enemies':4,
+}
+
 def setLevelDataPath():
     os.chdir(os.path.join(os.getcwd(), 'data'))
     os.chdir(os.path.join(os.getcwd(), 'levels'))
@@ -45,16 +53,13 @@ def saveEditorLevel():
     for j in range(0, columns, 1):
         objectArray.append([])
         for i in range(0, rows, 1):
-            objectArray[j].append('00')
+            objectArray[j].append(objectCodes['space'])
     for objectKey in objectManager.objectSet:
         for object in objectManager.objectSet[objectKey]:
             objectRect = object.getRect()
             i = (objectRect.y - min_y)/tile_size
             j = (objectRect.x - min_x)/tile_size
-            if objectKey is 'level':
-                objectArray[i][j] = '01'
-            if objectKey is 'player':
-                objectArray[i][j] = '10'
+            objectArray[i][j] = objectCodes[objectKey]
     setLevelDataPath()
     data = open(current_level, 'w')
     for objectRow in objectArray:
@@ -86,15 +91,15 @@ def loadLevel(level):
     objectManager.initializeObjects()
 
 def createObject(object, origin, size):
-    if object[0] is '0':
-        if object[1] is '1':
-            objectManager.objectSet['level'].append(objects.Object(origin[0], origin[1], size[0], size[1]))
     if object[0] is '1':
-        if object[1] is '0':
-            playerObject = objects.Entity(origin[0], origin[1], size[0], size[1])
-            setImageDataPath()
-            playerObject.setImage(pygame.image.load('test.png'))
-            resetPath()
-            objectManager.objectSet['player'].append(playerObject)
-        if object[1] is '1':
-            objectManager.objectSet['enemies'].append(objects.Entity(origin[0], origin[1], size[0], size[1]))
+        objectManager.objectSet['level'].append(objects.Object(origin[0], origin[1], size[0], size[1]))
+    if object[0] is '2':
+        objectManager.objectSet['environment'].append(objects.Object(origin[0], origin[1], size[0], size[1]))
+    if object[0] is '3':
+        playerObject = objects.Entity(origin[0], origin[1], size[0], size[1])
+        setImageDataPath()
+        playerObject.setImage(pygame.image.load('test.png'))
+        resetPath()
+        objectManager.objectSet['player'].append(playerObject)
+    if object[0] is '4':
+        objectManager.objectSet['enemies'].append(objects.Entity(origin[0], origin[1], size[0], size[1]))

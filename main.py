@@ -10,7 +10,7 @@ levelManager.loadLevel('001')
 
 engineState = 0
 profileState = 1
-showFps = 0
+showFps = 1
 
 #game loop
 while engineState is 0:

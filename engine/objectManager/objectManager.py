@@ -3,6 +3,7 @@ from engine.objectManager import objects
 __author__ = 'josiah'
 
 physicsObjectSets = ['player', 'enemies']
+interactionObjectSets = physicsObjectSets + ['level']
 entitySets = physicsObjectSets
 
 objectSet = {
@@ -31,6 +32,8 @@ def isEntity(object):
 def initializeObjects():
     for object in objectSet['level']:
         object.setColor([120,120,120])
+    for object in objectSet['environment']:
+        object.setColor([120,120,120])
 
 screen_height = config.gfx['screen']['screen_height']
 screen_width = config.gfx['screen']['screen_width']
@@ -56,6 +59,13 @@ def getAllObjects():
 def getObjects():
     objectsList = []
     for objectKey in objectSet:
+        for object in objectSet[objectKey]:
+            append(objectsList, object)
+    return objectsList
+
+def getInteractionObjects():
+    objectsList = []
+    for objectKey in interactionObjectSets:
         for object in objectSet[objectKey]:
             append(objectsList, object)
     return objectsList

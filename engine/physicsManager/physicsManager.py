@@ -30,10 +30,11 @@ def getCollisionsWithColliders(object, colliders):
     return False
 
 def processCollisions():
-    objects = objectManager.getObjects()
+    objects = objectManager.getInteractionObjects()
     objectIsPhysics = [None]*len(objects)
     for i in range(0, len(objects), 1):
-        objectIsPhysics[i] = isPhysicsObject(objects[i])
+        if i == 0:
+            objectIsPhysics[i] = isPhysicsObject(objects[i])
         for j in range(i+1, len(objects), 1):
             if i == 0:
                 objectIsPhysics[j] = isPhysicsObject(objects[j])
