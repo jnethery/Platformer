@@ -7,14 +7,6 @@ from engine.objectmanager import objectmanager, objectclasses
 
 current_level = None
 
-object_codes = {
-    'space':0,
-    'level':1,
-    'environment':2,
-    'player':3,
-    'enemies':4,
-}
-
 def set_level_data_path():
     os.chdir(os.path.join(os.getcwd(), 'data'))
     os.chdir(os.path.join(os.getcwd(), 'levels'))
@@ -119,6 +111,7 @@ def get_object_data(level):
     object_data_lines = object_data.readlines()
     object_data.close()
     object_indices = object_index_lines[index]
+    object_indices = object_indices.split(',')
     for i in range(0, len(object_indices), 1):
         object_data_list.append(object_data_lines[int(object_indices[i])])
     reset_path()

@@ -33,7 +33,7 @@ def add_object(mouse_pos):
         pos_x = (mouse_pos[0] % screen_width/tile_size)*tile_size
         pos_y = (mouse_pos[1] % screen_height/tile_size)*tile_size
         pos_x, pos_y = add_offset(pos_x, pos_y)
-        object = objectclasses.Object(pos_x, pos_y, tile_size, tile_size)
+        object = objectclasses.Object(pos_x, pos_y, tile_size, tile_size, 0)
         object.set_color([0,0,0])
         objectmanager.object_sets['level'].append(object)
 
