@@ -115,7 +115,7 @@ class Entity(PhysicsObject):
         return self.health > 0
 
     def jump(self):
-        self.apply_vel(self.velocity[0], -self.jump_velocity)
+        self.apply_vel([self.velocity[0], -self.jump_velocity])
 
 class Player(Entity):
 
