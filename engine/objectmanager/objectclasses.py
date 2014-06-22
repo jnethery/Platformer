@@ -133,6 +133,3 @@ class Player(Entity):
             elif self.velocity[i] < -self.max_velocity[i]:
                 self.velocity[i] = -self.max_velocity[i]
 
-    def jump(self):
-        pass
-

@@ -8,7 +8,7 @@ from engine.gfxmanager import gfxmanager
 from engine.sysmanager import clock
 from engine import config
 
-engine_state = 1
+engine_state = 0
 profile_state = False
 show_fps = False
 
