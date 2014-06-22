@@ -66,9 +66,6 @@ class PhysicsObject(Object):
         self.apply_damp()
 
     def apply_vel(self, vector):
-        is_grounded = physicsmanager.is_grounded(self)
-        if not is_grounded:
-            vector[0] = 0.5*vector[0]
         self.velocity = map(operator.add, self.velocity, vector)
         for i in range(0, len(self.velocity), 1):
             if self.velocity[i] > self.max_velocity[i]:
@@ -116,3 +113,20 @@ class Entity(PhysicsObject):
 
     def is_alive(self):
         return self.health > 0
+
+class Player(Entity):
+
+    def __init__(self, x, y, w, h, idx):
+        super(Player, self).__init__(x, y, w, h, idx)
+
+    def apply_vel(self, vector):
+        is_grounded = physicsmanager.is_grounded(self)
+        if not is_grounded:
+            vector[0] = 0.5*vector[0]
+        self.velocity = map(operator.add, self.velocity, vector)
+        for i in range(0, len(self.velocity), 1):
+            if self.velocity[i] > self.max_velocity[i]:
+                self.velocity[i] = self.max_velocity[i]
+            elif self.velocity[i] < -self.max_velocity[i]:
+                self.velocity[i] = -self.max_velocity[i]
+
