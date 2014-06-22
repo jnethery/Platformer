@@ -3,6 +3,7 @@ import os
 import sys
 import pygame
 import engine.config as config
+import string
 from engine.objectmanager import objectmanager, objectclasses
 
 current_level = None
@@ -103,7 +104,7 @@ def create_object(object, origin, size, object_data):
 def get_object_data(level):
     object_data_list = []
     set_object_data_path()
-    index = int(level)
+    index = int(string.split(level, '_')[-1])
     object_index = open('object_index', 'r')
     object_index_lines = object_index.readlines()
     object_index.close()
