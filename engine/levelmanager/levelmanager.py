@@ -4,7 +4,8 @@ import sys
 import pygame
 import engine.config as config
 import string
-from engine.objectmanager import objectmanager, objectclasses
+import importlib
+from engine.objectmanager import objectmanager
 
 current_level = None
 
@@ -93,13 +94,19 @@ def create_object(object, origin, size, object_data):
     if object_index != int('FFFF', 16):
         object_data = object_data[object_index]
         object_data = object_data.split(' ')
-        object_class = getattr(objectclasses, object_data[0])
+        object_class = get_object_class(object_data[0])
         object_set = object_data[1]
         num_fields = int(object_data[2])
         object = object_class(origin[0], origin[1], size[0], size[1], object_index)
         for i in range(0, num_fields, 2):
             setattr(object, object_data[3 + i], parse_variable(object_data[4 + i]))
         objectmanager.object_sets[object_set].append(object)
+
+def get_object_class(object_data):
+    object_data = object_data.split('.')
+    object_module = importlib.import_module('engine.objectmanager.classes.' + '.'.join(object_data))
+    object_class = getattr(object_module, object_data[len(object_data) - 1])
+    return object_class
 
 def get_object_data(level):
     object_data_list = []

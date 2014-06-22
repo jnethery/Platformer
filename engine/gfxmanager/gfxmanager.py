@@ -2,7 +2,7 @@ __author__ = 'josiah'
 import pygame
 import operator
 from engine import config
-from engine.objectmanager import objectmanager, objectclasses
+from engine.objectmanager import objectmanager, classes
 
 screen_width = config.gfx['screen']['screen_width']
 screen_height = config.gfx['screen']['screen_height']
@@ -29,7 +29,7 @@ def init_screen(engine_state):
 
 def init_editor_objects():
     tile_size = config.gfx['tile']['tile_size']
-    editor_menu = objectclasses.Object(screen_width, 0, editor_menu_width, screen_height)
+    editor_menu = classes.Object(screen_width, 0, editor_menu_width, screen_height)
     editor_menu.set_color([20,20,20])
     objectmanager.editor_object_sets['editor_menu'].append(editor_menu)
 
@@ -63,8 +63,6 @@ def flip_screen():
 def blit(object):
     if object.image is not None:
         screen.blit(object.image, object.get_rect())
-    elif type(object) is objectclasses.FontObject:
-        screen.blit(object.text, object.get_rect())
     else:
         pygame.draw.rect(screen, object.get_color(), object.get_rect())
 
