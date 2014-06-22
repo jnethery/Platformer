@@ -1,2 +1,5 @@
 *.pyc
+*.iml
 .idea/workspace.xml
+*.xml
+*.swp

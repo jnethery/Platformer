@@ -8,13 +8,14 @@ from engine.gfxmanager import gfxmanager
 from engine.sysmanager import clock
 from engine import config
 
+# engine state = {0 for demo, 1 for level editor}
 engine_state = 0
 profile_state = False
 show_fps = False
 
 #initialize
 pygame.init()
-levelmanager.load_level('000')
+levelmanager.load_level('demo_000')
 gfxmanager.init_screen(engine_state)
 
 #game loop
