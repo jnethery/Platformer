@@ -15,8 +15,7 @@ def apply_vel(object, vector):
 
 def jump(object):
     if is_grounded(object):
-        vel = object.get_vel()
-        object.set_vel([vel[0], -object.jump_velocity])
+        object.jump()
 
 def apply_physics():
     objects = objectmanager.get_physics_objects()

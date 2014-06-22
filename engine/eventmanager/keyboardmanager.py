@@ -20,11 +20,11 @@ def run_editor_keyboard_processes(keydown_events):
     for event in keydown_events:
         if event.key is pygame.K_q:
             sys.exit()
-        elif event.key is pygame.K_s and event.mod == 64:
+        elif event.key is pygame.K_s and event.mod is pygame.KMOD_LCTRL:
             print 'Saving level...'
             editor.save_editor_level()
-        elif event.key is pygame.K_a or pygame.K_d and event.mod != 1:
-            tile_size = config.physics['tile']['tile_size']
+        elif event.key is pygame.K_a or pygame.K_d and event.mod != pygame.KMOD_LSHIFT:
+            tile_size = config.gfx['tile']['tile_size']
             vector = [((keys[pygame.K_a]-keys[pygame.K_d])*tile_size), ((keys[pygame.K_w]-keys[pygame.K_s])*tile_size)]
             gfxmanager.move_screen(vector)
 

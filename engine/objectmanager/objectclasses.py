@@ -114,6 +114,9 @@ class Entity(PhysicsObject):
     def is_alive(self):
         return self.health > 0
 
+    def jump(self):
+        self.apply_vel(self.velocity[0], -self.jump_velocity)
+
 class Player(Entity):
 
     def __init__(self, x, y, w, h, idx):
@@ -129,4 +132,7 @@ class Player(Entity):
                 self.velocity[i] = self.max_velocity[i]
             elif self.velocity[i] < -self.max_velocity[i]:
                 self.velocity[i] = -self.max_velocity[i]
+
+    def jump(self):
+        pass
 
