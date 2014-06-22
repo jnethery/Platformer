@@ -29,7 +29,7 @@ def init_screen(engine_state):
 
 def init_editor_objects():
     tile_size = config.gfx['tile']['tile_size']
-    editor_menu = classes.Object(screen_width, 0, editor_menu_width, screen_height)
+    editor_menu = classes.Object.Object(screen_width, 0, editor_menu_width, screen_height)
     editor_menu.set_color([20,20,20])
     objectmanager.editor_object_sets['editor_menu'].append(editor_menu)
 

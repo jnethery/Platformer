@@ -9,7 +9,7 @@ from engine.sysmanager import clock
 from engine import config
 
 # engine state = {0 for demo, 1 for level editor}
-engine_state = 0
+engine_state = 1
 profile_state = False
 show_fps = False
 

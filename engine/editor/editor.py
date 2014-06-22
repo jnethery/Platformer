@@ -18,7 +18,7 @@ def show_editor_cursor(mouse_pos):
     pos_x, pos_y = add_offset(pos_x, pos_y)
     if pos_x < screen_width:
         if len(objectmanager.editor_object_sets['editor_cursor']) == 0:
-            objectmanager.editor_object_sets['editor_cursor'].append(classes.Object(pos_x, pos_y, tile_size, tile_size))
+            objectmanager.editor_object_sets['editor_cursor'].append(classes.Object.Object(pos_x, pos_y, tile_size, tile_size))
         else:
             objectmanager.editor_object_sets['editor_cursor'][0].set_pos([pos_x, pos_y])
 
@@ -33,7 +33,7 @@ def add_object(mouse_pos):
         pos_x = (mouse_pos[0] % screen_width/tile_size)*tile_size
         pos_y = (mouse_pos[1] % screen_height/tile_size)*tile_size
         pos_x, pos_y = add_offset(pos_x, pos_y)
-        object = classes.Object(pos_x, pos_y, tile_size, tile_size, 0)
+        object = classes.Object.Object(pos_x, pos_y, tile_size, tile_size, 0)
         object.set_color([0,0,0])
         objectmanager.object_sets['level'].append(object)
 
