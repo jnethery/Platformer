@@ -1,9 +1,8 @@
 __author__ = 'josiah'
 import pygame
 import operator
-from engine import config
 from engine.sysmanager import clock
-from engine.triggermanager import trigger
+from engine.physicsmanager import physicsmanager
 
 class Object(object):
 
@@ -67,6 +66,9 @@ class PhysicsObject(Object):
         self.apply_damp()
 
     def apply_vel(self, vector):
+        is_grounded = physicsmanager.is_grounded(self)
+        if not is_grounded:
+            vector[0] = 0.5*vector[0]
         self.velocity = map(operator.add, self.velocity, vector)
         for i in range(0, len(self.velocity), 1):
             if self.velocity[i] > self.max_velocity[i]:

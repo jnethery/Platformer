@@ -1,6 +1,7 @@
 __author__ = 'josiah'
 import sys
 import pygame
+from engine import config
 from engine.editor import editor
 from engine.objectmanager import objectmanager
 from engine.gfxmanager import gfxmanager
@@ -23,7 +24,8 @@ def run_editor_keyboard_processes(keydown_events):
             print 'Saving level...'
             editor.save_editor_level()
         elif event.key is pygame.K_a or pygame.K_d and event.mod != 1:
-            vector = [((keys[pygame.K_a]-keys[pygame.K_d])*32), ((keys[pygame.K_w]-keys[pygame.K_s])*32)]
+            tile_size = config.physics['tile']['tile_size']
+            vector = [((keys[pygame.K_a]-keys[pygame.K_d])*tile_size), ((keys[pygame.K_w]-keys[pygame.K_s])*tile_size)]
             gfxmanager.move_screen(vector)
 
 def run_keyboard_processes(keydown_events):
